@@ -6,7 +6,7 @@ This program can solve linear equations in 1 variable.
 ## Command Line tool:
 To use the command line tool using Deno , type:
 ```
-deno run https://github.com/DebAxom/linear-eqn/command-line-tool/main.js
+deno run https://debaxom.github.io/linear-eqn/command-line-tool/main.js
 ```
 ## Note: 
 For multiplication, use '*' instead of 'x' <br>

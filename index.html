@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Linear Equation Solver</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="https://debaxom.github.io/axomia-type/static/icons.css">
+    <link rel="stylesheet" href="./static/style.css">
+    <script src="./static/script.js" async defer></script>
+    <script>
+        function openMenu(_this){
+            if(_this.innerHTML==="close"){
+            document.getElementById('sidenav').style.width="0%";
+            _this.innerHTML="menu";
+            return;
+            }
+            _this.innerHTML="close";
+            if(screen.width>411){
+                document.getElementById('sidenav').style.width="30%";
+                return;
+            }
+            document.getElementById('sidenav').style.width="75%";
+        }
+    </script>
+</head>
+<body>
+    <div id="sidenav">
+        <a href="https://github.com/DebAxom">Github</a>
+        <hr>
+        <a href="https://twitter.com/DebAxom">Twitter</a>
+        <hr>
+        <a href="https://instagram.com/DebAxom">Instagram</a>
+        <hr>
+        <a href="https://youtube.com/channel/UCOlTCB5f2z6_lWl3466ZB_Q">Youtube</a>
+        <hr>
+        <a href="https://github.com/DebAxom/axomia-type">Github Repo</a>
+        <hr>
+        <p>Created by DebAxom</p>
+    </div>
+    <div class="header">
+        <span class="icons" onclick="openMenu(this)">menu</span>
+        
+        <h3>Linear Eq<sup>n</sup> solver</h3>
+
+        <div style="visibility: hidden;"></div>
+
+    </div>
+    <div class="container">
+        <form onsubmit="return window.solve()">
+            <input type="text" id="eqn" placeholder="Type the equation...">
+            <input type="submit" value="send" class="icons">
+        </form>
+        <div id="ans"></div>
+        <div id="note">
+            Note: <br>
+            For multiplication, use '*' instead of 'x' <br>
+            For division, use '/' instead of '%' <br>
+            Use variable 'x' only (lowercase).
+            This is just a prototype. <br>
+            It can't solve critical problems. <br>
+            It can solve only linear equations in 1 variable. <br>
+            Using brackets can break the program. Don't type something like: 2(x+3)=0<br>
+            Sample Problem: 2x+3=0 <br>
+        </div>
+    </div>
+</body>
+</html>

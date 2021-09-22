@@ -1,0 +1,107 @@
+*{margin:0px;padding:0px;box-sizing:border-box;outline:none;font-family:Calibri;}
+html{font-size:62.5%;}
+body{
+    font-size:1.6rem;
+    display:flex;
+    flex-direction:column;
+    height:100vh;
+    width:100vw;
+    overflow-x:hidden;
+    background-color: rgb(53, 51, 51);
+}
+
+.header{
+    width: 100vw;
+    height: 3.5rem;
+    background-color: white;
+    color: black;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+h3{
+    letter-spacing: 2.5px;
+    font-weight: lighter;
+    font-size: 2rem;
+}
+
+a{
+    flex-shrink: 0;
+    color:black;
+    text-decoration:none;
+    padding: 0.5rem;
+    letter-spacing: 2px;
+    font-weight: lighter;
+    font-size: 1.6rem;
+}
+
+a:hover{
+    color: #0099ff;
+}
+
+#sidenav{
+    width:0%;
+    height: calc(100% - 3.5rem);
+    top:3.5rem;
+    position:fixed;
+    background-color:#ffffff;
+    box-shadow: 0.1rem 0.1rem 0.50rem rgba(0,0,0,0.5);
+    z-index:999;
+    transition:0.5s;
+    overflow:hidden;
+    text-align:center;
+    display: flex;
+    flex-direction: column;
+}
+#sidenav p{
+    margin-top: auto;
+}
+span{
+    cursor:default;
+}
+
+input{
+    flex-shrink: 0;
+    padding: 0.5rem;
+    height: 3.5rem;
+    width: 90%;
+    border: none;
+}
+input[type="submit"]{
+    width: 10%;
+    flex-shrink: 0;
+    font-size: 1.4rem;
+    color: white;
+    background-color: #0099ff;
+    border: none;
+}
+.container{
+    margin-top: 2rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.container div, .container form{
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+}
+
+#ans,#note{
+    margin-top: 1rem;
+    background-color: white;
+}
+
+#note{
+    padding: 0.5rem;
+}
+
+@media screen and (max-width: 412px) {
+    .container div, .container form{
+        width: 90%;
+    }
+}

@@ -7,5 +7,8 @@ export default {
       file: 'static/script.js',
       format: 'es'
     },
-    plugins:[babel({ babelHelpers:'bundled',presets:['@babel/preset-env']}),terser()]
+    plugins:[
+      babel({ babelHelpers:'bundled',presets:['@babel/preset-env']}),
+      terser()
+  ]
 };

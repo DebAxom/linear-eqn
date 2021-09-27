@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="stylesheet" href="https://debaxom.github.io/axomia-type/static/icons.css">
     <link rel="stylesheet" href="./static/style.css">
-    <script src="./static/script.js" async defer></script>
     <script>
         function openMenu(_this){
             if(_this.innerHTML==="close"){
@@ -22,6 +21,7 @@
             document.getElementById('sidenav').style.width="75%";
         }
     </script>
+    <script src="./static/script.js" async defer></script>
 </head>
 <body>
     <div id="sidenav">
@@ -52,15 +52,16 @@
         </form>
         <div id="ans"></div>
         <div id="note">
-            Note: <br>
-            For multiplication, use '*' instead of 'x' <br>
-            For division, use '/' instead of '%' <br>
-            Use variable 'x' only (lowercase).
-            This is just a prototype. <br>
-            It can't solve critical problems. <br>
-            It can solve only linear equations in 1 variable. <br>
-            Using brackets can break the program. Don't type something like: 2(x+3)=0<br>
-            Sample Problem: 2x+3=0 <br>
+            <h2>Note:</h2>
+            <ul>
+                <li>For multiplication, use '*' instead of 'x'</li>
+                <li>For division, use '/' instead of '%'</li>
+                <li>Use variable 'x' only (lowercase).</li>
+                <li>This is just a prototype.</li>
+                <li>It can't solve critical problems.</li>
+                <li>It can solve only linear equations in 1 variable.</li>
+                <li>Sample Problem: 2x+3=0</li>
+            </ul>
         </div>
     </div>
 </body>

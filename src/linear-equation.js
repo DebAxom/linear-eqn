@@ -1,3 +1,5 @@
+import * as answer from './answersheet.js';
+
 const isConstant = value => Number(evalWithoutError(value)) ? true : false ;
 
 function evalWithoutError(value){
@@ -51,12 +53,49 @@ function Multiplication_Division(term){
     }
 }
 
+function EvaluateLikeTerms(string){
+
+    let terms = string.split('+');
+
+    let consts = [], vars = [];
+
+    terms.forEach(element => {
+        if(isConstant(element)) consts.push(element);
+        else vars.push(FindCoeefficient(element));
+    });
+
+    consts = eval(consts.join('+'));
+    vars = eval(vars.join('+'));
+
+    return `${vars}x + ${consts}`;
+
+}
+
+function EvaluateBracket(string,beforeBracket){
+
+    let terms = string.split('+');
+
+    let consts = [], vars = [];
+
+    terms.forEach(element => {
+        if(isConstant(element)) consts.push(element);
+        else vars.push(FindCoeefficient(element));
+    });
+
+    consts =  beforeBracket * eval(consts.join('+'));
+    vars =  beforeBracket * eval(vars.join('+'));
+
+    return `${vars}x + ${consts}`;
+
+}
+
 function Separate_Vars_Consts(rhsArr,lhsArr){
 
     let newLhsArr = [] , newRhsArr = [] ;
 
     rhsArr.forEach(element=> {
         element = Multiplication_Division(element);
+        if(element==0) return;
         if(isConstant(element)) newRhsArr.push(element);
         else newLhsArr.push(PositiveNegative(element));
     });
@@ -67,30 +106,42 @@ function Separate_Vars_Consts(rhsArr,lhsArr){
         else newRhsArr.push(PositiveNegative(element));
     });
 
+    var text = `=> ${newLhsArr.join('+')} = ${newRhsArr.join('+')}`.replace(/\+\-/g,'-');
+    answer.write(text);
     return {LHS:newLhsArr,RHS:newRhsArr};
 }
 
 function Equate(LHS,RHS){
     RHS = eval(RHS.join('+'));
     LHS = eval(LHS.map(term=>FindCoeefficient(term)).join('+'));
-    return {
-        answer:RHS/LHS,
-        answerFraction:`${RHS}/${LHS}`
-    };
+    answer.write(`=> x = ${RHS}/${LHS}`);
+    answer.write(`=> x = ${RHS/LHS}`);
 }
 
 function SolveEquation(equation){
     equation = equation.replace(/ /g,'');
     equation = equation.replace(new RegExp('-','g'),'+-');
 
+    const roundBracketsRegex = /[0-9]+\((.*?)\)/g;
+    let brackets = equation.match(roundBracketsRegex);
+    if(brackets!=null){
+        brackets.forEach(term=>{
+            let beforeBracket = term.split('(')[0];
+            let str = term.split('(')[1].replace(')','');
+            equation = equation.replace(term,EvaluateBracket(str,beforeBracket));
+        });
+
+        answer.write(`=> ${equation.replace(/\+\-/g,'-')}`);
+    }
+
     let PartOfEquation = equation.split('=');
     let lhs = PartOfEquation[0] , rhs = PartOfEquation[1];
+
     let lhsArr = lhs.split('+') , rhsArr = rhs.split('+');
 
     let {LHS,RHS} = Separate_Vars_Consts(rhsArr,lhsArr);
 
-    let {answer,answerFraction} = Equate(LHS,RHS);
-    return {answer,answerFraction};
+    Equate(LHS,RHS);
 }
 
 export default SolveEquation;

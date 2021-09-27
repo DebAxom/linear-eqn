@@ -27,6 +27,12 @@ h3{
     font-size: 2rem;
 }
 
+h2{
+    letter-spacing: 2.5px;
+    font-weight: lighter;
+    font-size: 2rem;
+}
+
 a{
     flex-shrink: 0;
     color:black;
@@ -97,6 +103,8 @@ input[type="submit"]{
 }
 
 #note{
+    display: flex;
+    flex-direction: column;
     padding: 0.5rem;
 }
 

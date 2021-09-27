@@ -51,6 +51,24 @@ function Multiplication_Division(term){
     }
 }
 
+function EvaluateBracket(string,beforeBracket){
+
+    let terms = string.split('+');
+
+    let consts = [], vars = [];
+
+    terms.forEach(element => {
+        if(isConstant(element)) consts.push(element);
+        else vars.push(FindCoeefficient(element));
+    });
+
+    consts =  beforeBracket * eval(consts.join('+'));
+    vars =  beforeBracket * eval(vars.join('+'));
+
+    return `${vars}x + ${consts}`;
+
+}
+
 function Separate_Vars_Consts(rhsArr,lhsArr){
 
     let newLhsArr = [] , newRhsArr = [] ;
@@ -80,6 +98,16 @@ function Equate(LHS,RHS){
 function SolveEquation(equation){
     equation = equation.replace(/ /g,'');
     equation = equation.replace(new RegExp('-','g'),'+-');
+
+    const roundBracketsRegex = /[0-9]+\((.*?)\)/g;
+    let brackets = equation.match(roundBracketsRegex);
+    if(brackets!=null){
+        brackets.forEach(term=>{
+            let beforeBracket = term.split('(')[0];
+            let str = term.split('(')[1].replace(')','');
+            equation = equation.replace(term,EvaluateBracket(str,beforeBracket));
+        });
+    }
 
     let PartOfEquation = equation.split('=');
     let lhs = PartOfEquation[0] , rhs = PartOfEquation[1];
